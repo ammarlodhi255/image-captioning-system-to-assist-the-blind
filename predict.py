@@ -41,7 +41,7 @@ def process_image(img):
 def predict(model):
     pass
 
-# generate captions
+
 def idx_to_word(integer, tokenizer):
     for word, idx in tokenizer.word_index.items():
         if idx == integer:
