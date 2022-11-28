@@ -14,9 +14,7 @@ body{
 }
 
 .drag-area, .container{
-  height: 500px;
   width: 700px;
-  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,8 +27,11 @@ body{
 }
 .drag-area{
   border: 2px dashed white;
-  
+  height: 500px;
+  width: 700px;
+  border-radius: 5px;
 }
+
 .drag-area.active{
   border: 2px solid white;
 }
@@ -61,8 +62,8 @@ body{
   cursor: pointer;
 }
 .drag-area img{
-  height: 100%;
-  width: 100%;
+  height: 500px;
+  width: 500px;
   object-fit: cover;
   border-radius: 5px;
 }
