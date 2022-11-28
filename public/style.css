@@ -64,7 +64,7 @@ body{
 .drag-area img{
   height: 500px;
   width: 500px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 5px;
 }
 
