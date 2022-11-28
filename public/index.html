@@ -1,31 +1,40 @@
 <!DOCTYPE html>
-
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Captioning</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-</head>
-<body>
-  <div class="container">
-    <div><h3>Image Caption Generator</h2></div>
-    <div class="drag-area" ondragover="dragOver(event)" ondragleave="dragLeave()" ondrop="dropped(event)">
-      <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-      <header>Drag & Drop to Upload Image</header>
-      <span>or</span>
-      <button onclick="browseBtnCLicked()">Browse Image</button>
-      <input type="file" id='input' hidden onchange="inputChanged()">
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div><h3>Image Caption Generator</h3></div>
+      <div
+        class="drag-area"
+        ondragover="dragOver(event)"
+        ondragleave="dragLeave()"
+        ondrop="dropped(event)"
+      >
+        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+        <header>Drag & Drop to Upload Image</header>
+        <span>or</span>
+        <button onclick="browseBtnCLicked()">Browse Image</button>
+        <input type="file" id="input" hidden onchange="inputChanged()" />
+      </div>
+      <button id="rmv-img-btn" onclick="rmvButtonClicked()">
+        Remove Image
+      </button>
+      <div class="caption-area">
+        Generated caption:
+        <div id="caption"></div>
+      </div>
     </div>
-    <button id="rmv-img-btn" onclick="rmvButtonClicked()">Remove Image</button>
-    <div class="caption-area">
-      Generated caption: 
-      <div id="caption"></div>
-    </div>
-  </div>
 
-  <script src="script.js"></script>
-
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
