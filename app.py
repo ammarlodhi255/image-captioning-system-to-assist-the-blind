@@ -14,7 +14,7 @@ def render():
     return render_template('index.html')
 
 
-@app.route('/submit/')
+@app.route('/submit/', methods=['GET', 'POST'])
 def submit():
     pass
 
