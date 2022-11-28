@@ -12,13 +12,16 @@ from tensorflow.keras.layers \
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 sys.path.append(os.path.abspath('./model'))
 
+vocab_size = 20572
+max_length = 155
+
 
 def load_model(shape, saved_model_path):
     conv_inputs = Input(shape=(shape,))
     fe1 = Dropout(0.5)(conv_inputs)
     fe2 = Dense(256, activation='relu')(fe1)
-    seq_inputs = Input(shape=(155,))
-    se1 = Embedding(20572, 256, mask_zero=True)(seq_inputs)
+    seq_inputs = Input(shape=(max_length,))
+    se1 = Embedding(vocab_size, 256, mask_zero=True)(seq_inputs)
     se2 = Dropout(0.5)(se1)
     se3 = LSTM(256)(se2)
     decoder1 = add([fe2, se3])
