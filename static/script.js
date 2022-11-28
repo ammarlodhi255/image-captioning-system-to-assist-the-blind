@@ -11,7 +11,7 @@ function browseBtnCLicked() {
 }
 
 function inputChanged() {
-  // getting user select file and [0] this means if user selecst multiple files then we'll select only the first one
+  //getting user select file and [0] this means if user selecst multiple files then we'll select only the first one
   file = document.getElementById('input').files[0];
   dropArea.classList.add("active");
   showFile(); 

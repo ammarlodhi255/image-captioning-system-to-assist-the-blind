@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Captioning</title>
-    <link rel="stylesheet" href="style.css" />
+    <link
+      href="{{ url_for('static',filename='style.css') }}"
+      rel="stylesheet"
+      type="text/css"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -23,6 +27,12 @@
         <header>Drag & Drop to Upload Image</header>
         <span>or</span>
         <button onclick="browseBtnCLicked()">Browse Image</button>
+      </div>
+      <form
+        action="{{ url_for('submit') }}"
+        enctype="multipart/form-data"
+        method="POST"
+      >
         <input
           type="file"
           id="input"
@@ -30,7 +40,8 @@
           hidden
           onchange="inputChanged()"
         />
-      </div>
+        <input type="submit" />
+      </form>
       <button id="rmv-img-btn" onclick="rmvButtonClicked()">
         Remove Image
       </button>
@@ -40,19 +51,9 @@
       </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"
-      integrity="sha512-BmM0/BQlqh02wuK5Gz9yrbe7VyIVwOzD1o40yi1IsTjriX/NGF37NyXHfmFzIlMmoSIBXgqDiG1VNU6kB5dBbA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
+      type="text/javascript"
+      src="{{ url_for('static',filename='script.js') }}"
     ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
-      integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="script.js"></script>
   </body>
 </html>
