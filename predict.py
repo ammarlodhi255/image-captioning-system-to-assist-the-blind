@@ -32,7 +32,8 @@ def load_model(shape, saved_model_path):
 
 
 def init_model():
-    loaded_model = load_model(4096, '')
+    path = r"D:\University Files\Assignments\7th Semester\Machine Learning\Project\loaded_data\vgg_model5_3.hdf5"
+    loaded_model = load_model(4096, path)
     print('Model Loaded Successfully')
     return loaded_model
 
