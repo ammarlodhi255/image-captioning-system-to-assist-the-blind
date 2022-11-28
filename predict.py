@@ -4,7 +4,12 @@ import numpy as np
 import os
 import sys
 import base64
-from tensorflow.keras.layers import Input, Dense, add, LSTM, Embedding, Dropout, Conv2D, MaxPooling2D, BatchNormalization, Flatten
+from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
+from tensorflow.keras.preprocessing.image import load_img, img_to_array
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.layers \
+    import Input, Dense, add, LSTM, Embedding, Dropout, Conv2D, MaxPooling2D, BatchNormalization, Flatten
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 sys.path.append(os.path.abspath('./model'))
 
 
@@ -49,14 +54,26 @@ def idx_to_word(integer, tokenizer):
     return None
 
 
-def predict_caption(model, image, tokenizer, max_length):
+def get_pretrained_model():
+    model = VGG16()
+    model = Model(inputs=model.inputs, outputs=model.layers[-2].output)
+    return model
+
+def predict_caption(model, img_path, tokenizer, max_length):
+    img = load_img(img_path, target_size=(224, 224))
+    img = img_to_array(img)
+    img = img.reshape((1, img.shape[0], img.shape[1], img.shape[2]))
+    img = preprocess_input(img)
+    pretrained_model = get_pretrained_model()
+    feature = pretrained_model.predict(img, verbose=0)
+
     in_text = 'startseq'
 
     for i in range(max_length):
         sequence = tokenizer.texts_to_sequences([in_text])[0]
         sequence = pad_sequences([sequence], max_length)
         next_word = model.predict(
-            [np.array(image), np.array(sequence)], verbose=0)
+            [feature, sequence], verbose=0)
         next_word = np.argmax(next_word)
         word = idx_to_word(next_word, tokenizer)
         if word is None:
