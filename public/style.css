@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial";
+}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: black;
+}
+
+.drag-area, .container{
+  height: 500px;
+  width: 700px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.container h3{
+  font-size: 35px;
+  padding: 10px;
+  color: white;
+}
+.drag-area{
+  border: 2px dashed white;
+  
+}
+.drag-area.active{
+  border: 2px solid white;
+}
+.drag-area .icon{
+  font-size: 60px;
+  color: white;
+}
+.drag-area header{
+  font-size: 25px;
+  font-weight: 500;
+  color: white;
+}
+.drag-area span{
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+  margin: 10px 0 15px 0;
+}
+.drag-area button, #rmv-img-btn{
+  padding: 10px 25px;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  background: white;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.drag-area img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.caption-area{
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  margin-left: 0px;
+}
+
+#rmv-img-btn{
+  display: none;
+  margin: 10px;
+}
+
+#caption{
+  color: white;
+  margin-top: 5px;
+}
