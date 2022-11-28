@@ -7,39 +7,40 @@ da = document.querySelector(".drag-area").innerHTML
 let file; //this is a global variable and we'll use it inside multiple functions
 removeImageButton = document.getElementById('rmv-img-btn')
 
-function browseBtnCLicked(){ document.getElementById('input').click(); //if user clicks on the button then the input is also clicked
+function browseBtnCLicked() { 
+  document.getElementById('input').click(); 
 }
 
-function inputChanged(){
+function inputChanged() {
   //getting user select file and [0] this means if user selecst multiple files then we'll select only the first one
   file = document.getElementById('input').files[0];
   dropArea.classList.add("active");
-  showFile(); //calling function
+  showFile(); 
 }
 
 
 //If user Drag File Over DropArea
-function dragOver(event){
+function dragOver(event) {
   event.preventDefault(); //preventing from default behaviour
   dropArea.classList.add("active");
   dropArea.querySelector("header").textContent = "Release to Upload File";
 }
 
 //If user leave dragged File from DropArea
-function dragLeave(){
+function dragLeave() {
   dropArea.classList.remove("active");
   dropArea.querySelector("header").textContent = "Drag & Drop to Upload File";
 }
 
 
-function dropped(event){
+function dropped(event) {
   event.preventDefault(); //preventing from default behaviour
   //getting user select file and [0] this means if user select multiple files then we'll select only the first one
   file = event.dataTransfer.files[0];
   showFile(); //calling function
 }
 
-function showFile(){
+function showFile() {
   document.getElementById('caption').innerText = ''
   let fileType = file.type; //getting selected file type
   let validExtensions = ["image/jpeg", "image/jpg", "image/png"]; //adding some valid image extensions in array
@@ -56,14 +57,14 @@ function showFile(){
     //show a button to remove the image 
     removeImageButton.style.display = "block";
 
-  }else{
-    alert("This is not an Image File!");
-    dropArea.classList.remove("active");
-    dragText.textContent = "Drag & Drop to Upload File";
+  } else {
+      alert("This is not an Image File!");
+      dropArea.classList.remove("active");
+      dragText.textContent = "Drag & Drop to Upload File";
   }
 }
 
-function rmvButtonClicked(){
+function rmvButtonClicked() {
   dropArea.innerHTML = da;
   document.getElementById('caption').innerText = '';
   removeImageButton.style.display = "none";

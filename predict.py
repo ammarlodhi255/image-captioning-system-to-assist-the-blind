@@ -12,6 +12,7 @@ from tensorflow.keras.layers \
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 sys.path.append(os.path.abspath('./model'))
 
+
 vocab_size = 20572
 max_length = 155
 
