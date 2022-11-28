@@ -17,8 +17,8 @@ def load_model(shape, saved_model_path):
     conv_inputs = Input(shape=(shape,))
     fe1 = Dropout(0.5)(conv_inputs)
     fe2 = Dense(256, activation='relu')(fe1)
-    seq_inputs = Input(shape=(max_length,))
-    se1 = Embedding(vocab_size, 256, mask_zero=True)(seq_inputs)
+    seq_inputs = Input(shape=(155,))
+    se1 = Embedding(20572, 256, mask_zero=True)(seq_inputs)
     se2 = Dropout(0.5)(se1)
     se3 = LSTM(256)(se2)
     decoder1 = add([fe2, se3])
@@ -59,13 +59,19 @@ def get_pretrained_model():
     model = Model(inputs=model.inputs, outputs=model.layers[-2].output)
     return model
 
-def predict_caption(model, img_path, tokenizer, max_length):
+
+def pre_process(img_path):
     img = load_img(img_path, target_size=(224, 224))
     img = img_to_array(img)
     img = img.reshape((1, img.shape[0], img.shape[1], img.shape[2]))
     img = preprocess_input(img)
     pretrained_model = get_pretrained_model()
     feature = pretrained_model.predict(img, verbose=0)
+    return feature
+
+
+def predict_caption(model, img_path, tokenizer, max_length):
+    img = pre_process(img_path)
 
     in_text = 'startseq'
 
