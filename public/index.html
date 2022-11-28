@@ -23,7 +23,13 @@
         <header>Drag & Drop to Upload Image</header>
         <span>or</span>
         <button onclick="browseBtnCLicked()">Browse Image</button>
-        <input type="file" id="input" hidden onchange="inputChanged()" />
+        <input
+          type="file"
+          id="input"
+          name="file1"
+          hidden
+          onchange="inputChanged()"
+        />
       </div>
       <button id="rmv-img-btn" onclick="rmvButtonClicked()">
         Remove Image

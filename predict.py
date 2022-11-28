@@ -9,6 +9,7 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.layers \
     import Input, Dense, add, LSTM, Embedding, Dropout, Conv2D, MaxPooling2D, BatchNormalization, Flatten
+from tensorflow.keras.models import Model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 sys.path.append(os.path.abspath('./model'))
 

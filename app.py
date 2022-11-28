@@ -16,7 +16,8 @@ def render():
 
 @app.route('/submit/', methods=['GET', 'POST'])
 def submit():
-    pass
+    file = request.files['file1']
+    file.save('./static/file.jpg')
 
 
 # Run app
