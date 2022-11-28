@@ -40,6 +40,7 @@ function dropped(event){
 }
 
 function showFile(){
+  document.getElementById('caption').innerText = ''
   let fileType = file.type; //getting selected file type
   let validExtensions = ["image/jpeg", "image/jpg", "image/png"]; //adding some valid image extensions in array
   if(validExtensions.includes(fileType)){ //if user selected file is an image file
