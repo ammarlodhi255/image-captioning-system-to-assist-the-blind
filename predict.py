@@ -2,7 +2,9 @@ import cv2
 import tensorflow as tf
 import numpy as np
 import os
+import pickle
 import sys
+from tqdm import tqdm
 import base64
 from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
@@ -53,6 +55,12 @@ def predict(model):
     pass
 
 
+def get_tokenizer():
+    with open(r"D:\University Files\Assignments\7th Semester\Machine Learning\Project\loaded_data\vocab.pkl", 'rb') as f:
+        tokenizer = pickle.load(f)
+    return tokenizer
+
+
 def idx_to_word(integer, tokenizer):
     for word, idx in tokenizer.word_index.items():
         if idx == integer:
@@ -76,12 +84,13 @@ def pre_process(img_path):
     return feature
 
 
-def predict_caption(model, img_path, tokenizer, max_length):
-    img = pre_process(img_path)
+def predict_caption(model, img_path):
+    tokenizer = get_tokenizer()
+    feature = pre_process(img_path)
 
     in_text = 'startseq'
 
-    for i in range(max_length):
+    for i in tqdm(range(max_length)):
         sequence = tokenizer.texts_to_sequences([in_text])[0]
         sequence = pad_sequences([sequence], max_length)
         next_word = model.predict(
