@@ -10,6 +10,13 @@ function browseBtnCLicked() {
   document.getElementById('input').click(); 
 }
 
+
+function speak() {
+  var audio = new Audio('D:\\University Files\\Assignments\\7th Semester\\Machine Learning\\Project\\source-code\\static\\speech.wav')
+  audio.play()
+}
+
+
 function inputChanged() {
   //getting user select file and [0] this means if user selecst multiple files then we'll select only the first one
   file = document.getElementById('input').files[0];

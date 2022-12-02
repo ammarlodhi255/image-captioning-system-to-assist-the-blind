@@ -6,28 +6,42 @@ import pickle
 import sys
 from tqdm import tqdm
 import base64
-from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
+from tensorflow.keras.applications.vgg16 import VGG16
+from tensorflow.keras.applications import ResNet50
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.layers \
     import Input, Dense, add, LSTM, Embedding, Dropout, Conv2D, MaxPooling2D, BatchNormalization, Flatten
 from tensorflow.keras.models import Model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+from gtts import gTTS
+from IPython.display import Audio
 sys.path.append(os.path.abspath('./model'))
 
+'''
+    1. resnet_model1_res.hdf5
+    2. vgg_model5_3.hdf5
+'''
 
 vocab_size = 20572
 max_length = 155
+shape = 4096
+model_to_use = 'VGG16'
+base_dir = r"D:\University Files\Assignments\7th Semester\Machine Learning\Project\loaded_data"
+path_to_model = os.path.join(base_dir, "vgg_model5_3.hdf5")
 
 
-def load_model(shape, saved_model_path):
+def load_model(saved_model_path):
     conv_inputs = Input(shape=(shape,))
     fe1 = Dropout(0.5)(conv_inputs)
     fe2 = Dense(256, activation='relu')(fe1)
+
     seq_inputs = Input(shape=(max_length,))
     se1 = Embedding(vocab_size, 256, mask_zero=True)(seq_inputs)
     se2 = Dropout(0.5)(se1)
     se3 = LSTM(256)(se2)
+
+    # Decoder model
     decoder1 = add([fe2, se3])
     decoder2 = Dense(256, activation='relu')(decoder1)
     outputs = Dense(vocab_size, activation='softmax')(decoder2)
@@ -39,20 +53,10 @@ def load_model(shape, saved_model_path):
 
 
 def init_model():
-    path = r"D:\University Files\Assignments\7th Semester\Machine Learning\Project\loaded_data\vgg_model5_3.hdf5"
-    loaded_model = load_model(4096, path)
+    path = path_to_model
+    loaded_model = load_model(path)
     print('Model Loaded Successfully')
     return loaded_model
-
-
-# decode from base64 and save the image
-def process_image(img):
-    with open('img_output.png', 'wb') as output:
-        output.write(base64.b64decode(str(img, 'utf-8')))
-
-
-def predict(model):
-    pass
 
 
 def get_tokenizer():
@@ -68,18 +72,31 @@ def idx_to_word(integer, tokenizer):
     return None
 
 
-def get_pretrained_model():
-    model = VGG16()
+def get_pretrained_model(model_name):
+    if model_name == 'VGG16':
+        model = VGG16()
+    elif model_name == 'Resnet':
+        model = ResNet50()
+
     model = Model(inputs=model.inputs, outputs=model.layers[-2].output)
     return model
+
+
+def get_pre_trained_processed_img(img, model_name):
+    if model_name == 'Resnet':
+        img = tf.keras.applications.resnet50.preprocess_input(img)
+    elif model_name == 'VGG16':
+        img = tf.keras.applications.vgg16.preprocess_input(img)
+
+    return img
 
 
 def pre_process(img_path):
     img = load_img(img_path, target_size=(224, 224))
     img = img_to_array(img)
     img = img.reshape((1, img.shape[0], img.shape[1], img.shape[2]))
-    img = preprocess_input(img)
-    pretrained_model = get_pretrained_model()
+    img = get_pre_trained_processed_img(img, model_to_use)
+    pretrained_model = get_pretrained_model(model_to_use)
     feature = pretrained_model.predict(img, verbose=0)
     return feature
 
@@ -102,4 +119,4 @@ def predict_caption(model, img_path):
         in_text += ' ' + word
         if word == 'endseq':
             break
-    return in_text
+    return ' '.join([word for word in in_text.split(' ') if word not in ['startseq', 'endseq']])
