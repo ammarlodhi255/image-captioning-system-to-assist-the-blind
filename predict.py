@@ -21,13 +21,15 @@ sys.path.append(os.path.abspath('./model'))
 '''
     1. resnet_model1_res.hdf5
     2. vgg_model5_3.hdf5
+    3. vgg16_model.hdf5
 '''
 
 vocab_size = 20572
+# vocab_size = 18126
 max_length = 155
 shape = 4096
 model_to_use = 'VGG16'
-base_dir = r"D:\University Files\Assignments\7th Semester\Machine Learning\Project\loaded_data"
+base_dir = "./static"
 path_to_model = os.path.join(base_dir, "vgg_model5_3.hdf5")
 
 
@@ -60,7 +62,7 @@ def init_model():
 
 
 def get_tokenizer():
-    with open(r"D:\University Files\Assignments\7th Semester\Machine Learning\Project\loaded_data\vocab.pkl", 'rb') as f:
+    with open("./static/vocab.pkl", 'rb') as f:
         tokenizer = pickle.load(f)
     return tokenizer
 
@@ -103,6 +105,7 @@ def pre_process(img_path):
 
 def predict_caption(model, img_path):
     tokenizer = get_tokenizer()
+    print(len(tokenizer.word_index))
     feature = pre_process(img_path)
 
     in_text = 'startseq'
