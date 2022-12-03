@@ -11,10 +11,10 @@ function browseBtnCLicked() {
 }
 
 
-function speak() {
-  var audio = new Audio('D:\\University Files\\Assignments\\7th Semester\\Machine Learning\\Project\\source-code\\static\\speech.wav')
-  audio.play()
-}
+// function speak() {
+//   var audio = new Audio('D:\\University Files\\Assignments\\7th Semester\\Machine Learning\\Project\\source-code\\static\\speech.wav')
+//   audio.play()
+// }
 
 
 function inputChanged() {
