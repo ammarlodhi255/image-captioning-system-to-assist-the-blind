@@ -29,7 +29,7 @@ vocab_size = 20572
 max_length = 155
 shape = 4096
 model_to_use = 'VGG16'
-base_dir = "./static"
+base_dir = "./static" # provide base_dir for the model here
 path_to_model = os.path.join(base_dir, "vgg_model5_3.hdf5")
 
 
@@ -62,6 +62,7 @@ def init_model():
 
 
 def get_tokenizer():
+    # Provide the path for the vocab.pkl here
     with open("./static/vocab.pkl", 'rb') as f:
         tokenizer = pickle.load(f)
     return tokenizer
