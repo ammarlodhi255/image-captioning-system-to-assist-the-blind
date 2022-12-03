@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from predict import *
-
+from tts import *
+from threading import Thread
 
 app = Flask(__name__, template_folder='./public')
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
@@ -30,7 +31,8 @@ def submit():
     file.save('./static/file.jpg')
 
     predicted_caption = predict_caption(model, './static/file.jpg')
-    # speak_caption(predicted_caption)
+    thread = Thread(target=text_to_speech(predicted_caption, "Male"))
+    thread.start()
     return render_template('index.html', predicted_caption=predicted_caption)
 
 
