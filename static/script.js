@@ -25,14 +25,14 @@ function inputChanged() {
 }
 
 
-//If user Drag File Over DropArea
+//If user Drags File Over DropArea
 function dragOver(event) {
   event.preventDefault(); //preventing from default behaviour
   dropArea.classList.add("active");
   dropArea.querySelector("header").textContent = "Release to Upload File";
 }
 
-//If user leave dragged File from DropArea
+//If user leaves dragged File from DropArea
 function dragLeave() {
   dropArea.classList.remove("active");
   dropArea.querySelector("header").textContent = "Drag & Drop to Upload File";
@@ -57,7 +57,7 @@ function showFile() {
       //passing user file source in fileURL variable
       let fileURL = fileReader.result; 
       //creating an img tag and passing user selected file source inside src attribute
-      let imgTag = `<img src="${fileURL}" alt="image" height=500 width=500>`; 
+      let imgTag = `<img src="${fileURL}" alt="image" class="imageDiv">`; 
       dropArea.innerHTML = imgTag; //adding that created img tag inside dropArea container
     }
 
@@ -79,4 +79,8 @@ function rmvButtonClicked() {
   document.getElementById('caption').innerText = '';
   removeImageButton.style.display = "none";
   file = null
+}
+
+function showProgressBar(){
+  
 }
