@@ -11,7 +11,7 @@ from tensorflow.keras.applications import ResNet50
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.layers \
-    import Input, Dense, add, LSTM, Embedding, Dropout, Conv2D, MaxPooling2D, BatchNormalization, Flatten
+    import Input, Dense, add, LSTM, Embedding, Dropout, Conv2D, MaxPooling2D, BatchNormalization, Flatten, Bidirectional
 from tensorflow.keras.models import Model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from gtts import gTTS
@@ -29,7 +29,7 @@ vocab_size = 20572
 max_length = 155
 shape = 4096
 model_to_use = 'VGG16'
-base_dir = "./static" # provide base_dir for the model here
+base_dir = "./static"  # provide base_dir for the model here
 path_to_model = os.path.join(base_dir, "vgg_model5_3.hdf5")
 
 
