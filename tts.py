@@ -1,5 +1,5 @@
 import pyttsx3
-import time
+
 
 def text_to_speech(text, gender):
     voice_dict = {'Male': 0, 'Female': 1}
@@ -17,6 +17,5 @@ def text_to_speech(text, gender):
     voices = engine.getProperty('voices')
     engine.setProperty('voice', voices[code].id)
 
-    time.sleep(3)
     engine.say(text)
     engine.runAndWait()
