@@ -30,7 +30,7 @@ def submit():
     file.save('./static/file.jpg')
 
     predicted_caption = predict_caption(model, './static/file.jpg')
-    speak_caption(predicted_caption)
+    # speak_caption(predicted_caption)
     return render_template('index.html', predicted_caption=predicted_caption)
 
 
