@@ -16,13 +16,6 @@ def render():
     return render_template('index.html')
 
 
-# def speak_caption(caption):
-#     text_to_speech = gTTS(caption)
-#     text_to_speech.save('./static/speech.wav')
-#     file = r'D:\University Files\Assignments\7th Semester\Machine Learning\Project\source-code\static\speech.wav'
-#     Audio(file, autoplay=True)
-
-
 @app.route('/submit', methods=['GET', 'POST'])
 def submit():
     global model
