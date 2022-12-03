@@ -16,6 +16,7 @@ body{
 
 .drag-area, .container{
   width: 700px;
+ 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,8 +30,9 @@ body{
 .drag-area{
   border: 2px dashed black;
   height: 500px;
-  width: 700px;
+  width: 620px;
   border-radius: 5px;
+  padding: 2px;
 }
 
 .drag-area.active{
@@ -51,9 +53,11 @@ body{
   color: black;
   margin: 10px 0 15px 0;
 }
-.drag-area button, #rmv-img-btn{
-  padding: 10px 25px;
+.drag-area button, #rmv-img-btn, #btnSubmit{
+  width:250px;
+  padding:10px;
   font-size: 20px;
+  height:40px;
   font-weight: 600;
   border: none;
   outline: none;
@@ -62,11 +66,16 @@ body{
   border-radius: 5px;
   cursor: pointer;
 }
-.drag-area img{
-  height: 500px;
-  width: 500px;
+
+.drag-area{
+  padding:5px;
+  margin:10px;
   object-fit: contain;
   border-radius: 5px;
+}
+.imageDiv{
+ max-height:495px;
+ max-width: 600px;
 }
 
 .caption-area{
