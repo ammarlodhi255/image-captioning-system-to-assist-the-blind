@@ -40,14 +40,19 @@
           hidden
           onchange="inputChanged()"
         />
-        <input type="submit" value="Generate Caption" id="btnSubmit" onclick="showProgressBar()"/>
+        <input
+          type="submit"
+          value="Generate Caption"
+          id="btnSubmit"
+          onclick="showProgressBar()"
+        />
       </form>
       <button id="rmv-img-btn" onclick="rmvButtonClicked()">
         Remove Image
       </button>
       <div class="caption-area">
         Generated caption:
-        <div id="caption" onclick="speak()">{{predicted_caption}}</div>
+        <div id="caption">{{predicted_caption}}</div>
       </div>
     </div>
 
