@@ -96,3 +96,6 @@ body{
   color: black;
   margin-top: 5px;
 }
+#caption-heading{
+  display: none;
+}

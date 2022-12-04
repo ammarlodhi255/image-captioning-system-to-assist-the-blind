@@ -63,7 +63,7 @@ function showFile() {
 
     fileReader.readAsDataURL(file);
     // show generated caption, once the image is uploaded and shown
-    document.getElementById('caption').append('Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime esse asperiores tempora dicta commodi, nesciun')
+    // document.getElementById('caption').append('Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime esse asperiores tempora dicta commodi, nesciun')
     // show a button to remove the image 
     removeImageButton.style.display = "block";
 
@@ -81,6 +81,7 @@ function rmvButtonClicked() {
   file = null
 }
 
-function showProgressBar(){
+function submitFormAndShowCaption(){
   
+  document.getElementById("form1").submit()
 }

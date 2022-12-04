@@ -28,10 +28,11 @@
         <span>or</span>
         <button onclick="browseBtnCLicked()">Browse Image</button>
       </div>
-      <form
+      <form 
         action="{{ url_for('submit') }}"
         enctype="multipart/form-data"
         method="POST"
+        id="form1"
       >
         <input
           type="file"
@@ -41,17 +42,17 @@
           onchange="inputChanged()"
         />
         <input
-          type="submit"
+          type="button"
           value="Generate Caption"
           id="btnSubmit"
-          onclick="showProgressBar()"
+          onclick="submitFormAndShowCaption()"
         />
       </form>
       <button id="rmv-img-btn" onclick="rmvButtonClicked()">
         Remove Image
       </button>
       <div class="caption-area">
-        Generated caption:
+         <div id="caption-heading">Generated caption:</div> 
         <div id="caption">{{predicted_caption}}</div>
       </div>
     </div>
