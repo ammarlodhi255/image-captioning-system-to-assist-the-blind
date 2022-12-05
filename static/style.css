@@ -105,7 +105,7 @@
     
   }
   #loader{
-    display: inline-block;
+    display: none;
     border: 5px solid lightgrey;
     border-top: 5px solid black; 
     margin-left:10px;
