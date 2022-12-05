@@ -41,12 +41,15 @@
           hidden
           onchange="inputChanged()"
         />
-        <input
+       <div class="inputFooter">
+          <input
           type="button"
           value="Generate Caption"
           id="btnSubmit"
           onclick="submitFormAndShowCaption()"
         />
+        <div id="loader"></div>
+       </div>
       </form>
       <button id="rmv-img-btn" onclick="rmvButtonClicked()">
         Remove Image
