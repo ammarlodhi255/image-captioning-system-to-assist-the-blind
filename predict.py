@@ -5,8 +5,6 @@ import os
 import pickle
 import sys
 from tqdm import tqdm
-import base64
-from tensorflow.keras.applications.vgg16 import VGG16
 from tensorflow.keras.applications import ResNet50
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.preprocessing.text import Tokenizer
@@ -14,23 +12,13 @@ from tensorflow.keras.layers \
     import Input, Dense, add, LSTM, Embedding, Dropout, Conv2D, MaxPooling2D, BatchNormalization, Flatten, Bidirectional
 from tensorflow.keras.models import Model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-from gtts import gTTS
-from IPython.display import Audio
 sys.path.append(os.path.abspath('./model'))
 
-'''
-    1. resnet_model1_res.hdf5
-    2. vgg_model5_3.hdf5
-    3. vgg16_model.hdf5
-'''
-
-vocab_size = 20572
-# vocab_size = 18126
-max_length = 155
-shape = 4096
-model_to_use = 'VGG16'
+vocab_size = 20571
+max_length = 150
+shape = 2048
 base_dir = "./static"  # provide base_dir for the model here
-path_to_model = os.path.join(base_dir, "vgg_model5_3.hdf5")
+path_to_model = os.path.join(base_dir, "resnet_model.hdf5")
 
 
 def load_model(saved_model_path):
@@ -43,7 +31,6 @@ def load_model(saved_model_path):
     se2 = Dropout(0.5)(se1)
     se3 = LSTM(256)(se2)
 
-    # Decoder model
     decoder1 = add([fe2, se3])
     decoder2 = Dense(256, activation='relu')(decoder1)
     outputs = Dense(vocab_size, activation='softmax')(decoder2)
@@ -62,7 +49,6 @@ def init_model():
 
 
 def get_tokenizer():
-    # Provide the path for the vocab.pkl here
     with open("./static/vocab.pkl", 'rb') as f:
         tokenizer = pickle.load(f)
     return tokenizer
@@ -75,38 +61,24 @@ def idx_to_word(integer, tokenizer):
     return None
 
 
-def get_pretrained_model(model_name):
-    if model_name == 'VGG16':
-        model = VGG16()
-    elif model_name == 'Resnet':
-        model = ResNet50()
-
-    model = Model(inputs=model.inputs, outputs=model.layers[-2].output)
-    return model
-
-
-def get_pre_trained_processed_img(img, model_name):
-    if model_name == 'Resnet':
-        img = tf.keras.applications.resnet50.preprocess_input(img)
-    elif model_name == 'VGG16':
-        img = tf.keras.applications.vgg16.preprocess_input(img)
-
-    return img
+def get_pretrained_model():
+    resnet = ResNet50()
+    resnet = Model(inputs=resnet.inputs, outputs=resnet.layers[-2].output)
+    return resnet
 
 
 def pre_process(img_path):
     img = load_img(img_path, target_size=(224, 224))
     img = img_to_array(img)
     img = img.reshape((1, img.shape[0], img.shape[1], img.shape[2]))
-    img = get_pre_trained_processed_img(img, model_to_use)
-    pretrained_model = get_pretrained_model(model_to_use)
+    img = tf.keras.applications.resnet50.preprocess_input(img)
+    pretrained_model = get_pretrained_model()
     feature = pretrained_model.predict(img, verbose=0)
     return feature
 
 
 def predict_caption(model, img_path):
     tokenizer = get_tokenizer()
-    print(len(tokenizer.word_index))
     feature = pre_process(img_path)
 
     in_text = 'startseq'
@@ -114,8 +86,7 @@ def predict_caption(model, img_path):
     for i in tqdm(range(max_length)):
         sequence = tokenizer.texts_to_sequences([in_text])[0]
         sequence = pad_sequences([sequence], max_length)
-        next_word = model.predict(
-            [feature, sequence], verbose=0)
+        next_word = model.predict([feature, sequence], verbose=0)
         next_word = np.argmax(next_word)
         word = idx_to_word(next_word, tokenizer)
         if word is None:
