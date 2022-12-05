@@ -9,6 +9,23 @@
       rel="stylesheet"
       type="text/css"
     />
+
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css"
+      rel="stylesheet"
+    />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -26,9 +43,15 @@
         <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
         <header>Drag & Drop to Upload Image</header>
         <span>or</span>
-        <button onclick="browseBtnCLicked()">Browse Image</button>
+        <button
+          id="browse_btn"
+          class="btn btn-primary"
+          onclick="browseBtnCLicked()"
+        >
+          Browse Image
+        </button>
       </div>
-      <form 
+      <form
         action="{{ url_for('submit') }}"
         enctype="multipart/form-data"
         method="POST"
@@ -41,18 +64,24 @@
           hidden
           onchange="inputChanged()"
         />
+        <div id="loader"></div>
         <input
           type="button"
           value="Generate Caption"
           id="btnSubmit"
+          class="btn btn-success"
           onclick="submitFormAndShowCaption()"
         />
       </form>
-      <button id="rmv-img-btn" onclick="rmvButtonClicked()">
+      <button
+        id="rmv-img-btn"
+        class="btn btn-danger"
+        onclick="rmvButtonClicked()"
+      >
         Remove Image
       </button>
       <div class="caption-area">
-         <div id="caption-heading">Generated caption:</div> 
+        <div id="caption-heading">Generated caption:</div>
         <div id="caption">{{predicted_caption}}</div>
       </div>
     </div>
