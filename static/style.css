@@ -53,7 +53,22 @@ body{
   color: black;
   margin: 10px 0 15px 0;
 }
-.drag-area button, #rmv-img-btn, #btnSubmit{
+
+#btnSubmit,
+#rmv-img-btn, 
+#browse_btn {
+  width: 250px;
+  padding: 10px;
+  font-size: 15px;
+  height: 40px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* .drag-area button{
   width:250px;
   padding:10px;
   font-size: 20px;
@@ -65,7 +80,7 @@ body{
   color: white;
   border-radius: 5px;
   cursor: pointer;
-}
+} */
 
 .drag-area{
   padding:5px;
@@ -99,3 +114,21 @@ body{
 #caption-heading{
   display: none;
 }
+
+ #loader{
+    margin: auto;
+    display: none;
+    border: 5px solid rgb(216, 215, 215);
+    border-top: 5px solid rgb(7, 113, 120); 
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
