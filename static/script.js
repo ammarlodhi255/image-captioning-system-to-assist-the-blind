@@ -82,11 +82,7 @@ function rmvButtonClicked() {
 }
 
 function submitFormAndShowCaption(){
-  //showing spinner
   spinner = document.getElementById("loader")
-  spinner.style.display = "inline-block";
-  //submitting form
-  document.getElementById("form1").submit() 
-  //stopping spinner
-
+  spinner.style.display = "block";
+  document.getElementById("form1").submit()
 }

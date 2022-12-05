@@ -26,7 +26,6 @@ def submit():
     predicted_caption = predict_caption(model, './static/file.jpg')
     text_to_speech(predicted_caption, "Male")
     predicted_caption = "Generated caption:\n" + predicted_caption
-    
     return render_template('index.html', predicted_caption=predicted_caption)
 
 
