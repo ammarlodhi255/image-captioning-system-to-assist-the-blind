@@ -9,7 +9,7 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
 
 # Initialize the model
 model = init_model()
-predicted_text = None
+predicted_text = ''
 
 # Home endpoint, render html file
 @app.route('/')
@@ -19,22 +19,25 @@ def render():
 
 @app.route('/submit', methods=['GET', 'POST'])
 def submit():
-    global model
+    global model, predicted_text
     file = request.files['file1']
     file.save('./static/file.jpg')
 
     predicted_caption = predict_caption(model, './static/file.jpg')
-    predicted_text = predict_caption
+    predicted_text = predicted_caption
     text_to_speech(predicted_caption, "Male")
     predicted_caption = "Generated caption:\n" + predicted_caption
     return render_template('predicted.html', predicted_caption=predicted_caption)
 
-@app.route('/speak')
-def render():
-    if predicted_text == None:
+@app.route('/speak', methods=['GET', 'POST'])
+def speak():
+    print(predict_caption)
+    if predicted_text == '':
         text_to_speech('Sorry! Invalid Request', "Male")
         return
     text_to_speech(predicted_text, "Male")
+    temp = "Generated caption:\n" + predicted_text
+    return render_template('predicted.html', predicted_caption=temp)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
