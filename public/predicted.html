@@ -43,9 +43,9 @@
         <img src="{{ url_for('static',filename='file.jpg') }}" alt="image" class="imageDiv">
       </div>
       
-      <form action="/">
+      <form action="/" id="predict-againform">
         <input
-            class="btn btn-primary" value="Predict Again" type="submit">
+            class="btn btn-primary" id="btnNew" value="Predict Again" type="button" onclick="submitPredictAgainForm(event)">
         </input>
         </form>
       <div class="caption-area">
@@ -53,9 +53,9 @@
         <div id="caption">{{predicted_caption}}</div>
       </div>
 
-      <form action="/speak">
+      <form action="/speak" id="speakForm">
         <input
-            class="btn btn-primary" value="Speak" type="submit">
+            class="btn btn-primary" id="btnNew" value="Speak" type="button"  onclick="submitSpeakForm(event)">
         </input>
         </form>
     </div>

@@ -86,3 +86,11 @@ function submitFormAndShowCaption(){
   spinner.style.display = "block";
   document.getElementById("form1").submit(); 
 }
+
+function submitPredictAgainForm(){
+  document.getElementById("predict-againform").submit();
+}
+
+function submitSpeakForm(){
+  document.getElementById("speakForm").submit();
+}

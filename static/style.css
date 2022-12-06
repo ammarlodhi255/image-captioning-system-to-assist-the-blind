@@ -56,7 +56,7 @@ body{
 
 #btnSubmit,
 #rmv-img-btn, 
-#browse_btn {
+#browse_btn, #btnNew {
   width: 250px;
   padding: 10px;
   font-size: 15px;
