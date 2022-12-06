@@ -5,13 +5,14 @@ from tts import *
 
 app = Flask(__name__, template_folder='./public')
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
-
+predicted_text = ''
 
 # Initialize the model
 model = init_model()
-predicted_text = ''
 
 # Home endpoint, render html file
+
+
 @app.route('/')
 def render():
     return render_template('index.html')
@@ -29,6 +30,7 @@ def submit():
     predicted_caption = "Generated caption:\n" + predicted_caption
     return render_template('predicted.html', predicted_caption=predicted_caption)
 
+
 @app.route('/speak', methods=['GET', 'POST'])
 def speak():
     print(predict_caption)
@@ -38,6 +40,7 @@ def speak():
     text_to_speech(predicted_text, "Male")
     temp = "Generated caption:\n" + predicted_text
     return render_template('predicted.html', predicted_caption=temp)
+
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))

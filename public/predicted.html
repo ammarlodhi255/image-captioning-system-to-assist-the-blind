@@ -10,17 +10,16 @@
       type="text/css"
     />
 
-    <!-- Font Awesome -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
       rel="stylesheet"
     />
-    <!-- Google Fonts -->
+
     <link
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
       rel="stylesheet"
     />
-    <!-- MDB -->
+
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css"
       rel="stylesheet"
@@ -47,7 +46,7 @@
         <input
             class="btn btn-primary" id="btnNew" value="Predict Again" type="button" onclick="submitPredictAgainForm(event)">
         </input>
-        </form>
+      </form>
       <div class="caption-area">
         <div id="caption-heading">Generated caption:</div>
         <div id="caption">{{predicted_caption}}</div>
@@ -55,9 +54,9 @@
 
       <form action="/speak" id="speakForm">
         <input
-            class="btn btn-primary" id="btnNew" value="Speak" type="button"  onclick="submitSpeakForm(event)">
+            style="margin-bottom:12px" class="btn btn-success" id="btnNew" value="Speak" type="button"  onclick="submitSpeakForm(event)">
         </input>
-        </form>
+      </form>
     </div>
 
     <script
