@@ -84,5 +84,5 @@ function rmvButtonClicked() {
 function submitFormAndShowCaption(){
   spinner = document.getElementById("loader")
   spinner.style.display = "block";
-  document.getElementById("form1").submit()
+  document.getElementById("form1").submit(); 
 }
