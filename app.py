@@ -10,9 +10,8 @@ predicted_text = ''
 # Initialize the model
 model = init_model()
 
+
 # Home endpoint, render html file
-
-
 @app.route('/')
 def render():
     return render_template('index.html')
@@ -26,7 +25,6 @@ def submit():
 
     predicted_caption = predict_caption(model, './static/file.jpg')
     predicted_text = predicted_caption
-    text_to_speech(predicted_caption, "Male")
     predicted_caption = "Generated caption:\n" + predicted_caption
     return render_template('predicted.html', predicted_caption=predicted_caption)
 
@@ -37,7 +35,7 @@ def speak():
     if predicted_text == '':
         text_to_speech('Sorry! Invalid Request', "Male")
         return
-    text_to_speech(predicted_text, "Male")
+    text_to_speech(predicted_text, "Female")
     temp = "Generated caption:\n" + predicted_text
     return render_template('predicted.html', predicted_caption=temp)
 
