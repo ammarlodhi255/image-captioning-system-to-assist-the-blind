@@ -33,6 +33,7 @@ def load_model(saved_model_path, flag):
         se3 = LSTM(256)(se2)
     else:
         se3 = Bidirectional(LSTM(128))(se2)
+
     decoder1 = add([fe2, se3])
     decoder2 = Dense(256, activation='relu')(decoder1)
     outputs = Dense(vocab_size, activation='softmax')(decoder2)
@@ -51,7 +52,9 @@ def init_model(model_name):
     else:
         path = os.path.join(base_dir, "non_bi_resnet.hdf5")
         flag = True
-        
+
+    print(path)
+
     loaded_model = load_model(path, flag)
     print('Model Loaded Successfully')
     return loaded_model
