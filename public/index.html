@@ -34,6 +34,13 @@
   <body>
     <div class="container">
       <div><h3>Image Caption Generator</h3></div>
+      <div style="margin-bottom: 15px">
+        <label for="models">Choose Model:</label>
+        <select id="models" name="models_values">
+          <option value="bi-lstm">ResNet50 + Bi-LSTM</option>
+          <option value="lstm">ResNet50 + LSTM</option>
+        </select>
+      </div>
       <div
         class="drag-area"
         ondragover="dragOver(event)"
@@ -64,12 +71,6 @@
           hidden
           onchange="inputChanged()"
         />
-        <label for="models">Choose Model:</label>
-        <select id="models" name="models_values">
-          <option value="bi-lstm">RESTNET LSTM</option>
-          <option value="lstm">RESTNET Bi-LSTM</option>
-        </select>
-        <br /><br />
         <div id="loader"></div>
         <input
           type="button"
