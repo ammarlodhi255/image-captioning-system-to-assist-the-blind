@@ -64,6 +64,12 @@
           hidden
           onchange="inputChanged()"
         />
+        <label for="models">Choose Model:</label>
+        <select id="models" name="models_values">
+          <option value="bi-lstm">RESTNET LSTM</option>
+          <option value="lstm">RESTNET Bi-LSTM</option>
+        </select>
+        <br /><br />
         <div id="loader"></div>
         <input
           type="button"

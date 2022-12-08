@@ -18,10 +18,9 @@ vocab_size = 20571
 max_length = 150
 shape = 2048
 base_dir = "./static"  # provide base_dir for the model here
-path_to_model = os.path.join(base_dir, "resnet_model.hdf5")
 
 
-def load_model(saved_model_path):
+def load_model(saved_model_path, flag):
     conv_inputs = Input(shape=(shape,))
     fe1 = Dropout(0.5)(conv_inputs)
     fe2 = Dense(256, activation='relu')(fe1)
@@ -29,8 +28,11 @@ def load_model(saved_model_path):
     seq_inputs = Input(shape=(max_length,))
     se1 = Embedding(vocab_size, 256, mask_zero=True)(seq_inputs)
     se2 = Dropout(0.5)(se1)
-    se3 = LSTM(256)(se2)
 
+    if flag == True:
+        se3 = LSTM(256)(se2)
+    else:
+        se3 = Bidirectional(LSTM(128))(se2)
     decoder1 = add([fe2, se3])
     decoder2 = Dense(256, activation='relu')(decoder1)
     outputs = Dense(vocab_size, activation='softmax')(decoder2)
@@ -41,9 +43,16 @@ def load_model(saved_model_path):
     return model
 
 
-def init_model():
-    path = path_to_model
-    loaded_model = load_model(path)
+def init_model(model_name):
+    path = ''
+    if model_name == 'bi-lstm':
+        path = os.path.join(base_dir, "resnet_model2.hdf5")
+        flag = False
+    else:
+        path = os.path.join(base_dir, "non_bi_resnet.hdf5")
+        flag = True
+        
+    loaded_model = load_model(path, flag)
     print('Model Loaded Successfully')
     return loaded_model
 
