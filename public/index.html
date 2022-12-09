@@ -73,12 +73,16 @@
           hidden
           onchange="inputChanged()"
         />
-        <p>Choose Model:</p>
-        <select id="models" name="models_values">
+        <div style="margin: auto; text-align: center;">Choose Model:</div>
+        <select
+          id="models"
+          name="models_values"
+          style="display: block; margin: auto; margin-bottom: 10px"
+        >
           <option value="bi-lstm">ResNet50 + Bi-LSTM</option>
           <option value="lstm">ResNet50 + LSTM</option>
         </select>
-        <br /><br />
+        <!-- <br /><br /> -->
         <div id="loader"></div>
         <input
           type="button"
