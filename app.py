@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request
 from predict import *
 from tts import *
@@ -7,9 +6,8 @@ app = Flask(__name__, template_folder='./public')
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
 predicted_text = ''
 
+
 # Home endpoint, render html file
-
-
 @app.route('/')
 def render():
     return render_template('index.html')
