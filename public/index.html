@@ -34,15 +34,6 @@
   <body>
     <div class="container">
       <div><h3>Image Caption Generator</h3></div>
-      <!-- <form action="{{ url_for('submit') }}" method="POST" id="form2"> -->
-      <!-- <div style="margin-bottom: 15px">
-        <label for="models">Choose Model:</label>
-        <select id="models" name="models_values">
-          <option value="bi-lstm">ResNet50 + Bi-LSTM</option>
-          <option value="lstm">ResNet50 + LSTM</option>
-        </select>
-      </div> -->
-      <!-- </form> -->
       <div
         class="drag-area"
         ondragover="dragOver(event)"
@@ -73,7 +64,7 @@
           hidden
           onchange="inputChanged()"
         />
-        <div style="margin: auto; text-align: center;">Choose Model:</div>
+        <div style="margin: auto; text-align: center">Choose Model:</div>
         <select
           id="models"
           name="models_values"
@@ -82,7 +73,6 @@
           <option value="bi-lstm">ResNet50 + Bi-LSTM</option>
           <option value="lstm">ResNet50 + LSTM</option>
         </select>
-        <!-- <br /><br /> -->
         <div id="loader"></div>
         <input
           type="button"

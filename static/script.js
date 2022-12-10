@@ -12,16 +12,14 @@ function browseBtnCLicked() {
 
 
 function inputChanged() {
-  //getting user select file and [0] this means if user selecst multiple files then we'll select only the first one
   file = document.getElementById('input').files[0];
   dropArea.classList.add("active");
   showFile(); 
 }
 
 
-//If user Drags File Over DropArea
 function dragOver(event) {
-  event.preventDefault(); //preventing from default behaviour
+  event.preventDefault(); 
   dropArea.classList.add("active");
   dropArea.querySelector("header").textContent = "Release to Upload File";
 }
@@ -34,8 +32,9 @@ function dragLeave() {
 
 
 function dropped(event) {
-  event.preventDefault(); //preventing from default behaviour
-  //getting user select file and [0] this means if user select multiple files then we'll select only the first one
+  event.preventDefault(); 
+
+  //getting user selected file and [0] means if user select multiple files then we'll only the first
   file = event.dataTransfer.files[0];
   showFile(); 
 }
@@ -48,7 +47,6 @@ function showFile() {
   if(validExtensions.includes(fileType)) { 
     let fileReader = new FileReader(); 
     fileReader.onload = () => {
-      //passing user file source in fileURL variable
       let fileURL = fileReader.result; 
       //creating an img tag and passing user selected file source inside src attribute
       let imgTag = `<img src="${fileURL}" alt="image" class="imageDiv">`; 
@@ -56,9 +54,6 @@ function showFile() {
     }
 
     fileReader.readAsDataURL(file);
-    // show generated caption, once the image is uploaded and shown
-    // document.getElementById('caption').append('Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime esse asperiores tempora dicta commodi, nesciun')
-    // show a button to remove the image 
     removeImageButton.style.display = "block";
 
   } else {
@@ -75,16 +70,16 @@ function rmvButtonClicked() {
   file = null
 }
 
-function submitFormAndShowCaption(){
+function submitFormAndShowCaption() {
   spinner = document.getElementById("loader")
   spinner.style.display = "block";
   document.getElementById("form1").submit(); 
 }
 
-function submitPredictAgainForm(){
+function submitPredictAgainForm() {
   document.getElementById("predict-againform").submit();
 }
 
-function submitSpeakForm(){
+function submitSpeakForm() {
   document.getElementById("speakForm").submit();
 }

@@ -6,7 +6,7 @@
   font-family: "Century Gothic";
 }
 
-body{
+body {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,20 +14,21 @@ body{
   background: rgb(255, 254, 254);
 }
 
-.drag-area, .container{
+.drag-area, .container {
   width: 700px;
- 
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-.container h3{
+
+.container h3 {
   font-size: 35px;
   padding: 10px;
   color: black;
 }
-.drag-area{
+
+.drag-area {
   border: 2px dashed black;
   height: 500px;
   width: 620px;
@@ -35,19 +36,22 @@ body{
   padding: 2px;
 }
 
-.drag-area.active{
+.drag-area.active {
   border: 2px solid black;
 }
-.drag-area .icon{
+
+.drag-area .icon {
   font-size: 60px;
   color: black;
 }
-.drag-area header{
+
+.drag-area header {
   font-size: 25px;
   font-weight: 500;
   color: black;
 }
-.drag-area span{
+
+.drag-area span {
   font-size: 20px;
   font-weight: 500;
   color: black;
@@ -68,32 +72,19 @@ body{
   cursor: pointer;
 }
 
-/* .drag-area button{
-  width:250px;
-  padding:10px;
-  font-size: 20px;
-  height:40px;
-  font-weight: 600;
-  border: none;
-  outline: none;
-  background: black;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-} */
-
-.drag-area{
+.drag-area {
   padding:5px;
   margin:10px;
   object-fit: contain;
   border-radius: 5px;
 }
-.imageDiv{
+
+.imageDiv {
  max-height:495px;
  max-width: 600px;
 }
 
-.caption-area{
+.caption-area {
   font-size: 20px;
   font-weight: 600;
   color: black;
@@ -102,20 +93,21 @@ body{
   margin-left: 0px;
 }
 
-#rmv-img-btn{
+#rmv-img-btn {
   display: none;
   margin: 10px;
 }
 
-#caption{
+#caption {
   color: black;
   margin-top: 5px;
 }
-#caption-heading{
+
+#caption-heading {
   display: none;
 }
 
- #loader{
+ #loader {
     margin: auto;
     display: none;
     border: 5px solid rgb(216, 215, 215);
