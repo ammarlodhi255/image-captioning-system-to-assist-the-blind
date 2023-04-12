@@ -43,10 +43,3 @@ Additional Outputs
 ![Output1](/screenshots/output1.png)
 ![Output2](/screenshots/output2.png)
 
-
-Installation
-============
-Install following dependencies:
-pip install tensorflow
-pip install flask
-pip install pyttsx3
